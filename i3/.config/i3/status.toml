@@ -1,0 +1,75 @@
+theme = "solarized-dark"
+icons = "awesome"
+
+
+[[block]]
+block = "pacman"
+interval = 120
+format = "{count} updates available"
+format_singular = "{count} update available"
+format_up_to_date = ""
+
+[[block]]
+block = "disk_space"
+path = "/"
+alias = "/"
+info_type = "available"
+unit = "GB"
+interval = 20
+warning = 10.0
+alert = 5.0
+
+[[block]]
+block = "custom"
+command="~/.config/i3/scripts/filesystem_info"
+interval = 20
+
+[[block]]
+block = "memory"
+display_type = "memory"
+format_mem = "{Mup}%"
+format_swap = "{SUp}%"
+
+[[block]]
+block = "cpu"
+interval = 2
+
+[[block]]
+block = "temperature"
+collapsed = true
+interval = 10
+good = 50
+idle = 60
+format = "{min}° min, {max}° max, {average}° avg"
+chip = "*-isa-*"
+
+[[block]]
+block = "backlight"
+device = "intel_backlight"
+
+[[block]]
+block = "sound"
+
+[[block]]
+block = "custom"
+command = "~/.config/i3/scripts/i3battery"
+on_click = "~/.config/i3/scripts/i3battery_click"
+interval = 100
+
+[[block]]
+block = "custom"
+command = "echo Todo [$(calcurse --todo | awk 'NR>1' | wc -l)]"
+on_click = "~/.config/i3/scripts/todo_notif"
+interval = 120
+
+[[block]]
+block = "custom"
+command = "~/.config/i3/scripts/events_notif info"
+on_click = "~/.config/i3/scripts/events_notif"
+interval = 120
+
+[[block]]
+block = "time"
+interval = 60
+format = "%a %d/%m %R"
+

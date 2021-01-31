@@ -1,0 +1,49 @@
+! special
+*.foreground:   #d8dee9
+*.background:   #2B313F
+*.cursorColor:  #ffffff
+
+! black
+*.color0:       #3b4252
+*.color8:       #4c566a
+
+! red
+*.color1:       #bf616a
+*.color9:       #bf616a
+
+! green
+*.color2:       #a3be8c
+*.color10:      #a3be8c
+
+! yellow
+*.color3:       #ebcb8b
+*.color11:      #ebcb8b
+
+! blue
+*.color4:       #81a1c1
+*.color12:      #81a1c1
+
+! magenta
+*.color5:       #b48ead
+*.color13:      #b48ead
+
+! cyan
+*.color6:       #88c0d0
+*.color14:      #8fbcbb
+
+! white
+*.color7:       #e5e9f0
+*.color15:      #eceff4
+
+! Xterm
+XTerm.vt100.reverseVideo: false
+XTerm.vt100.renderFont: true
+XTerm.vt100.faceName: Monospace:size=14:antialias=true
+
+! dwm
+dwm.normbordercolor: #4c566a
+dwm.normbgcolor: #3b4252
+dwm.normfgcolor: #d8dee9
+dwm.selbordercolor: #bf616a
+dwm.selbgcolor: #bf616a
+dwm.selfgcolor: #e5e9f0

@@ -1,0 +1,11 @@
+#!/bin/bash
+temp=$(sensors | awk '/^Package/ {print $4}')
+clock=$(lscpu | grep "MHz" | awk '/^CPU MHz/ {print $3}' | cut -f1 -d'.')
+
+echo "$temp $clock MHz"
+
+case $BLOCK_BUTTON in
+	1) notify-send -t 10000 -u low "Suorittimen syöjät (%):
+$(ps axch -o cmd:15,%cpu --sort=-%cpu | head)"
+esac
+

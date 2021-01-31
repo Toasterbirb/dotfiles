@@ -1,0 +1,14 @@
+#!/bin/sh
+
+case $BLOCK_BUTTON in
+	1) notify-send -t 10000 -u low "Ramin syöjät (%):
+$(ps axch -o cmd:15,%mem --sort=-%mem | head)" ;;
+	# 3) echo "Right" ;;
+esac
+
+text=$(free -h | awk '/^Mem:/ {print $3 "/" $2}')
+echo $text
+
+
+# Lähetä tiedot myös ilmoituksena puhelimelle
+#ssh -p 8022 192.168.8.151 "termux-notification -c '$text' --ongoing --priority high --group notif -t 'Ram' --alert-once -i 2"

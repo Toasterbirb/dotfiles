@@ -1,0 +1,9 @@
+configuration {
+	show-icons: false;
+	theme: "./themes/theme.rasi";
+	xoffset: 12;
+	yoffset: 228;
+	//columns: 2;
+	width: 750;
+	disable-history: true;
+}

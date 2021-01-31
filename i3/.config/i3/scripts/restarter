@@ -1,0 +1,86 @@
+#!/bin/bash
+choices="i3\npicom\nmonitor-mode\ndunst\ndetect-monitors\nespanso\npolybar\nvpn\nosu-map-remover\nxwinwrap\nrazer-daemon\nconfigger"
+
+chosen=$(echo -e "$choices" | rofi -dmenu -l 4 -columns 3 -i -p "Select program to restart/start")
+
+
+function start_razer_daemon {
+	killall openrazer-daemo
+	openrazer-daemon
+}
+
+function xwinwrap {
+	pkill xwinwrap
+	sh /home/toasterbirb/Scripts/system/animated_wallpaper.sh dual
+}
+
+function osu_map_remover {
+	map=$(echo "" | rofi -dmenu -i -p "Map name")
+	sh /home/toasterbirb/Scripts/osu_map_remover.sh "$map"
+	#sh /home/toasterbirb/Scripts/osu/osu_map_autoremove.sh
+}
+
+function restart_dunst {
+	echo "Restarting dunst"
+	killall dunst
+	dunst &
+	echo "Dunst restarted!"
+	notify-send -t 2000 -u low "Dunst restarted"
+}
+
+function restart_picom {
+	echo "Restarting picom"
+
+	picom_process="$(pgrep picom)"
+	if [[ "$picom_process" != "" ]]
+	then
+		killall picom
+		sleep 1
+		picom --experimental-backend &
+		notify-send -t 2000 -u low "picom restarted"
+	else 
+		picom --experimental-backend &
+		notify-send -t 2000 -u low "picom started"
+	fi
+
+	echo "picom restarted"
+}
+
+function restart_i3 {
+	echo "Restarting i3"
+	i3 restart
+	echo "i3 restarted"
+	notify-send -t 2000 -u low "i3 restarted"
+}
+
+function detect_monitors {
+	notify-send -t 2000 -u low "Detecting monitors"
+	~/.config/i3/scripts/monitor_config
+}
+
+function restart_espanso {
+	echo "Restarting espanso"
+	pkill espanso
+	espanso daemon &
+	echo "Espanso restarted"
+}
+
+function restart_polybar {
+	sh /home/toasterbirb/.config/polybar/launch.sh &
+}
+
+case "$chosen" in
+	i3) restart_i3 ;;
+	monitor-mode) sh /home/toasterbirb/Scripts/monitor-mode ;;
+	picom) restart_picom ;;
+	dunst) restart_dunst ;;
+	detect-monitors) detect_monitors ;;
+	espanso) restart_espanso ;;
+	polybar) restart_polybar ;;
+	vpn) notify-send -t 4000 "VPN" "$(sudo protonvpn r)" ;;
+	"osu-map-remover") osu_map_remover ;;
+	"xwinwrap") xwinwrap ;;
+	openrazer-daemon) start_razer_daemon ;;
+	configger) sh /home/toasterbirb/Scripts/configger/configger.sh ;;
+esac
+

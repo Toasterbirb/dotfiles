@@ -1,0 +1,11 @@
+#!/bin/bash
+
+todo_content=$(cat ~/.todo/todo.txt)
+
+[[ $todo_content == "" ]] && todo_count=0 || todo_count=$(cat ~/.todo/todo.txt | wc -l)
+
+echo "Todo [$todo_count]"
+
+case $BLOCK_BUTTON in
+	1) notify-send -t 10000 -u low "$(todo.sh list)" ;;
+esac

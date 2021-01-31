@@ -1,0 +1,15 @@
+#!/bin/bash
+
+title="Restarter"
+widthpercent=25
+
+typeset -A menu
+menu=(
+    [Compton]="~/Scripts/restart-scripts/restart-compton"
+    [Dunst]="killall dunst && dunst && notify-send -t 2000 'Dunst restarted'"
+)
+
+#typeset -A colors
+#colors=(
+#    [color-flag]="#color"
+#)

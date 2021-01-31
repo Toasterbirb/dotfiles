@@ -1,0 +1,15 @@
+#!/bin/bash
+hdmi_status="$(xrandr --current | grep "HDMI" | awk '{print $2}')"
+#charging_status=$(acpi | awk '{print $3}' | sed 's/,//g')
+
+if [[ "$hdmi_status" == "connected" ]]
+then
+	~/.screenlayout/dual_monitor.sh
+	#~/Scripts/system/animated_wallpaper.sh dual
+	nvidia-settings -l
+else
+	~/.screenlayout/single_monitor.sh
+fi
+
+nitrogen --restore
+sh ~/Scripts/system/random_lockscreen_picture.sh &

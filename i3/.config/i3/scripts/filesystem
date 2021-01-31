@@ -1,0 +1,15 @@
+#!/bin/bash
+root=$(df -h | awk '/^\/dev\/nvme0n1p3/ {print "/: " $3 "/" $2}')
+home=$(df -h | awk '/^\/dev\/nvme0n1p8/ {print "🏠: " $3 "/" $2}')
+echo "$root | $home"
+
+case $BLOCK_BUTTON in
+	1) notify-send "Package count: $(pacman -Q | wc -l)
+
+$(df -h | sed '/tmpfs/d' | sed '/dev /d' | sed '/run /d')
+
+CS:GO Clips
+-----------
+Size: $(du -sh /home/toasterbirb/Videot/CS-GO/clips | cut -d$'\t' -f1)
+Count: $(ls /home/toasterbirb/Videot/CS-GO/clips | wc -l)" ;;
+esac

@@ -1,0 +1,12 @@
+#!/bin/bash
+echo "Restarting i3..."
+i3 restart
+echo "i3 restarted"
+
+#echo "Restarting compton"
+#notify-send -t 2000 "Restarting compton..."
+#killall compton
+#sleep 1
+#compton
+#notify-send -t 2000 "Compton restarted"
+#echo "Compton restarted"

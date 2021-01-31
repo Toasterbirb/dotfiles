@@ -1,0 +1,27 @@
+#!/bin/bash
+
+eventCount_1d=$(calcurse -Q --days 1 --filter-type cal | grep -v '^ -' | sed -r '/^\s*$/d' | expr $(wc -l) / 2)
+
+eventCount_7d=$(calcurse -Q --days 7 --filter-type cal | grep -v '^ -' | sed -r '/^\s*$/d' | expr $(wc -l) / 2)
+
+if [[ "$eventCount_1d" == "0" ]]
+then
+	echo Events [$eventCount_7d]
+else
+	echo "💥 Events [$eventCount_7d] 💥"
+fi
+
+function print_events {
+	if [[ "$eventCount_1d" != "0" ]]
+	then
+		notify-send -u normal "Tämän päivän tapahtumat:
+$(calcurse -Q --days 1 --filter-type cal)"
+	fi
+
+	notify-send -u low "Seuraavan viikon tapahtumat:
+$(calcurse -Q --days 7 --filter-type cal)"
+}
+
+case $BLOCK_BUTTON in
+	1) print_events ;;
+esac

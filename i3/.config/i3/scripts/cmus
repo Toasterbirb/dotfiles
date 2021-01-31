@@ -1,0 +1,24 @@
+#!/bin/bash
+cmus_process=$(pidof cmus)
+
+if [[ "$cmus_process" != "" ]]
+then
+	title=$(cmus-remote -Q | awk '/^tag title/' | cut -d' ' -f3-)
+	artist=$(cmus-remote -Q | awk '/^tag artist/' | cut -d' ' -f3-)
+	play_status=$(cmus-remote -Q | awk '/^status/ {print $2}')
+
+	if [[ "$play_status" == "playing" ]]
+	then
+		echo ► $artist - $title
+	else
+		echo ■ $artist - $title
+	fi
+
+	case $BLOCK_BUTTON in
+		1) pkill -SIGRTMIN+1 i3blocks & cmus-remote -n ;;
+		2) pkill -SIGRTMIN+1 i3blocks & cmus-remote -u ;;
+		3) pkill -SIGRTMIN+1 i3blocks & cmus-remote -r ;;
+	esac
+else
+	echo ""
+fi

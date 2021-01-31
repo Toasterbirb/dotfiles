@@ -1,0 +1,26 @@
+#!/bin/bash
+cmus_process=$(pidof cmus)
+
+if [ -n "$cmus_process" ]
+then
+	cmus_remote=$(cmus-remote -Q)
+	title=$(echo "$cmus_remote" | awk '/^tag title/' | cut -d' ' -f3-)
+	artist=$(echo "$cmus_remote" | awk '/^tag artist/' | cut -d' ' -f3-)
+	play_status=$(echo "$cmus_remote" | awk '/^status/ {print $2}')
+	
+	duration=$(echo "$cmus_remote" | awk '/^duration/ {print $2}')
+	position=$(echo "$cmus_remote" | awk '/^position/ {print $2}')
+	[ -z $position ] && echo "" && exit 0 	# Vältä nollalla jakaminen
+	progress="$(expr $(($position * 100 / $duration)))%"
+	
+	[[ $artist != "" ]] && delimiter=" - " || delimiter=""
+
+	if [[ "$play_status" == "playing" ]]
+	then
+		echo "► ${artist}${delimiter}${title} ($progress)"
+	else
+		echo "■ ${artist}${delimiter}${title} ($progress)"
+	fi
+else
+	echo ""
+fi

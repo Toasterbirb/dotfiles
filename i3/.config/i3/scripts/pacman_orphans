@@ -1,0 +1,8 @@
+#!/bin/bash
+count=$(pacman -Qtd | wc -l)
+
+case $BLOCK_BUTTON in
+	1) kitty ~/Scripts/delete-orphans & ;;
+esac
+
+[ "$count" != "0" ] && echo "Orphan packages: $count" || exit 0
