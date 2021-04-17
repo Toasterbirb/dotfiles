@@ -41,9 +41,9 @@ XTerm.vt100.renderFont: true
 XTerm.vt100.faceName: Monospace:size=14:antialias=true
 
 ! dwm
-dwm.normbordercolor: #4c566a
-dwm.normbgcolor: #3b4252
-dwm.normfgcolor: #d8dee9
-dwm.selbordercolor: #bf616a
-dwm.selbgcolor: #bf616a
-dwm.selfgcolor: #e5e9f0
+!dwm.normbordercolor: #4c566a
+!dwm.normbgcolor: #3b4252
+!dwm.normfgcolor: #d8dee9
+!dwm.selbordercolor: #81a1c1
+!dwm.selbgcolor: #a3be8c
+!dwm.selfgcolor: #2e3440

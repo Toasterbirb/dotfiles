@@ -8,4 +8,5 @@ source /etc/X11/xinit/xinitrc.d/50-systemd-user.sh &
 [[ -f ~/.Xmodmap ]] && xmodmap ~/.Xmodmap &
 /home/toasterbirb/Scripts/system/startup.sh &
 setxkbmap -layout fi
+openrgb -p Default.orp &
 exec dwm

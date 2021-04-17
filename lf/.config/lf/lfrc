@@ -34,6 +34,23 @@ map X !$f
 map o &mimeopen $f
 map O $mimeopen --ask $f
 
+# Settings
+set drawbox
+set incsearch
+
+# Quick shortcuts
+map gc cd "~/.config"
+map gk cd "~/Kuvat"
+map gp cd "~/Projects"
+map gG cd "~/Projects/Git"
+map gs cd "~/Projects/Suckless"
+map gl cd "~/Lataukset"
+map gS cd "~/Scripts"
+map ga cd "~/Asiakirjat/AMK"
+map gt cd "~/Sekalaista/Torrents/Completed"
+map gm cd "~/Musiikki"
+map gv cd "~/Videot"
+
 # define a custom 'open' command
 # This command is called when current file is not a directory. You may want to
 # use either file extensions and/or mime types here. Below uses an editor for
@@ -44,7 +61,7 @@ cmd open ${{
         text/*) $EDITOR $fx;;
 		image/gif) mpv $f ;;
 		application/octet-stream) mpv $f ;;
-		image/*) feh $f ;;
+		image/*) sxiv $f ;;
 		video/*) mpv $f ;;
 		audio/*) mpv $f ;;
         *) for f in $fx; do setsid $OPENER $f > /dev/null 2> /dev/null & done;;

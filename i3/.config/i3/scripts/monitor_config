@@ -12,4 +12,4 @@ else
 fi
 
 nitrogen --restore
-sh ~/Scripts/system/random_lockscreen_picture.sh &
+#sh ~/Scripts/system/random_lockscreen_picture.sh &
